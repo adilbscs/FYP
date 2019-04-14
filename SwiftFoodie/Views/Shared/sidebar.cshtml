@@ -1,0 +1,74 @@
+﻿@using System.Web.Configuration
+<div class="layout-sidebar">
+    <div class="layout-sidebar-backdrop"></div>
+    <div class="layout-sidebar-body">
+        <div class="custom-scrollbar">
+            <nav id="sidenav" class="sidenav-collapse collapse">
+                <ul class="sidenav">
+                    <li class="sidenav-search hidden-md hidden-lg">
+                        <form class="sidenav-form" action="/">
+                            <div class="form-group form-group-sm">
+                                <div class="input-with-icon">
+                                    <input class="form-control" type="text" placeholder="Search…">
+                                    <span class="icon icon-search input-icon"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li class="sidenav-heading">Main</li>
+                    <li class="sidenav-item has-subnav active">
+                        <a href="dashboard-1.html" aria-haspopup="true">
+                            <span class="sidenav-icon icon icon-home"></span>
+                            <span class="sidenav-label">Dashboards</span>
+                        </a>
+                        <ul class="sidenav-subnav collapse">
+                            <li class="sidenav-subheading">Dashboards</li>
+                            <li><a href="@Url.Action("dashboard","home")">Home</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="sidenav-heading">Manage Orders</li>
+
+                    <li class="sidenav-item">
+                        <a href="@Url.Action("pending","orders")">
+                            <span class="sidenav-icon icon icon-users"></span>
+                            <span class="sidenav-label">Pending</span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="@Url.Action("current","orders")">
+                            <span class="sidenav-icon icon icon-users"></span>
+                            <span class="sidenav-label">On Going</span>
+                        </a>
+                    </li>
+
+                    <li class="sidenav-item">
+                        <a href="@Url.Action("canceled","orders")">
+                            <span class="sidenav-icon icon icon-comments"></span>
+                            <span class="sidenav-label">Canceled</span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="@Url.Action("completed","orders")">
+                            <span class="sidenav-icon icon icon-comments"></span>
+                            <span class="sidenav-label">Completed</span>
+                        </a>
+                    </li>
+                    <li class="sidenav-heading">Menu</li>
+                    <li class="sidenav-item has-subnav">
+                        <a href="#" aria-haspopup="true">
+                            <span class="sidenav-icon icon icon-briefcase"></span>
+                            <span class="sidenav-label">Manage Menu</span>
+                        </a>
+                        <ul class="sidenav-subnav collapse">
+                            <li class="sidenav-subheading">Manage Menu</li>
+                            <li><a href="@Url.Action("add","menu")">Add New Item</a></li>
+                            <li><a href="@Url.Action("list","menu")">View Menu Items</a></li>
+                            <li><a href="@Url.Action("ilist","menu")">InActive Items</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

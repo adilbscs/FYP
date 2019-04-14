@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="layout-content-body">
+    <div class="title-bar">
+        <h1 class="title-bar-title">
+            <span class="d-ib">Add Menu Form</span>
+        </h1>
+        <p class="title-bar-description">
+            <small>Forms presented below show how the elements of a form can be displayed differently.</small>
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <div class="demo-form-wrapper">
+                <form class="form" method="post" action="@Url.Action("save","menu")">
+                    <div class="form-group">
+                        <label >Item Name</label>
+                        <input id="ItemName" class="form-control" name="ItemName" >
+                    </div>
+                    <div class="form-group">
+                        <label >Item Category</label>
+                        <input id="ItemCategory" class="form-control" name="ItemCategory" >
+                    </div>
+                    <div class="form-group">
+                        <label >Item Price</label>
+                        <input id="ItemPrice" class="form-control"  name="ItemPrice" >
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

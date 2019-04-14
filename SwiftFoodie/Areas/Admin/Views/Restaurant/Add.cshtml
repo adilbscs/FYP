@@ -1,0 +1,84 @@
+﻿@using System.Web.Configuration
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section styles{
+    <link rel="stylesheet" href="@WebConfigurationManager.AppSettings["Theme"]css/vendor.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+    <link rel="stylesheet" href="@WebConfigurationManager.AppSettings["Theme"]css/vendor.min.css">
+    <link rel="stylesheet" href="@WebConfigurationManager.AppSettings["Theme"]css/elephant.min.css">
+    <link rel="stylesheet" href="@WebConfigurationManager.AppSettings["Theme"]css/application.min.css">
+    <link rel="stylesheet" href="@WebConfigurationManager.AppSettings["Theme"]css/demo.min.css">
+}
+
+<div class="layout-content-body">
+    <div class="title-bar">
+        <h1 class="title-bar-title">
+            <span class="d-ib">New Restaurant Form</span>
+           
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <form action="saverestaurant" method="post">
+                <div class="demo-md-form-wrapper">
+                    <div class="md-form-group md-label-floating">
+                        <input class="md-form-control" name="RestaurantName" type="text">
+                        <label class="md-control-label">Restaurant Name</label>
+                    </div>
+
+                    <div class="md-form-group md-label-floating">
+                        <input class="md-form-control" name="UserName" type="text">
+                        <label class="md-control-label">User Name</label>
+                    </div>
+                    <div class="md-form-group md-label-floating">
+                        <input class="md-form-control" name="Password" type="text">
+                        <label class="md-control-label">Password</label>
+                    </div>
+
+                    <div class="md-form-group md-label-floating">
+                        <input class="md-form-control" name="OwnerName" type="text">
+                        <label class="md-control-label">Owner Name</label>
+                    </div>
+                    <div class="md-form-group md-label-floating">
+                        <input class="md-form-control" name="PhoneNumber" type="text">
+                        <label class="md-control-label">Owner Phone Number</label>
+                    </div>
+
+                    <div class="md-form-group md-label-floating">
+                        <input class="md-form-control" name="City" type="text">
+                        <label class="md-control-label">City</label>
+                    </div>
+                    <div class="md-form-group md-label-floating">
+                        <textarea class="md-form-control" rows="4" name="CompleteAddress" maxlength="512"></textarea>
+                        <label class="md-control-label">Complete Address</label>
+                    </div>
+                    <div class="md-form-group md-label-floating">
+                        <button class="btn btn-outline-primary btn-pill" type="submit">Save</button>
+                        <a href="@Url.Action("dashboard","home")" class="btn btn-outline-danger btn-pill pull-right" type="reset">Cancel</a>
+                    </div>
+                </div>
+            </form>
+         
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="@WebConfigurationManager.AppSettings["Theme"]js/vendor.min.js"></script>
+    <script src="@WebConfigurationManager.AppSettings["Theme"]js/elephant.min.js"></script>
+    <script src="@WebConfigurationManager.AppSettings["Theme"]js/application.min.js"></script>
+    <script src="@WebConfigurationManager.AppSettings["Theme"]js/demo.min.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-83990101-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+}

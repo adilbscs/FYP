@@ -1,0 +1,281 @@
+﻿@using System.Web.Configuration
+@model IEnumerable<SwiftFoodie.Models.Users>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section styles{
+    <link rel="stylesheet" href="@WebConfigurationManager.AppSettings["Theme"]css/vendor.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+    <link rel="stylesheet" href="@WebConfigurationManager.AppSettings["Theme"]css/vendor.min.css">
+    <link rel="stylesheet" href="@WebConfigurationManager.AppSettings["Theme"]css/elephant.min.css">
+    <link rel="stylesheet" href="@WebConfigurationManager.AppSettings["Theme"]css/application.min.css">
+    <link rel="stylesheet" href="@WebConfigurationManager.AppSettings["Theme"]css/demo.min.css">
+
+}
+
+<div class="layout-content-body">
+    <div class="title-bar">
+        <h1 class="title-bar-title">
+            <span class="d-ib">In-Active Users List</span>
+
+        </h1>
+    </div>
+
+
+    <div class="row gutter-xs">
+        @if (Model.Count() > 0)
+        {
+            <style>
+
+                .main {
+                    width: 600px;
+                    height: auto;
+                    margin: 50px auto;
+                }
+
+                .points {
+                    background-color: #585858;
+                    width: 10px;
+                    height: 10px;
+                    margin: auto;
+                    -moz-border-radius: 10px; /*Firefox*/
+                    -webkit-border-radius: 10px; /*Safari, Chrome*/
+                    border-radius: 10px;
+                    border: solid 2px #9a9a9a;
+                    z-index: 100;
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=180, Color=#c5c4c4)"; /*IE 8*/
+                    -moz-box-shadow: 0px 3px 1px #c5c4c4; /*FF 3.5+*/
+                    -webkit-box-shadow: 0px 3px 1px #c5c4c4; /*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+                    box-shadow: 0px 3px 1px #c5c4c4; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+                    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=180, Color=#c5c4c4); /*IE 5.5-7*/
+                }
+
+                .shield-left {
+                    border-top: solid 1px #585858;
+                    width: 220px;
+                    margin-left: 93px;
+                    margin-top: 48px;
+                    -moz-transform: rotate(149deg) scale(1, 1) skewX(0deg) skewY(0deg) translate(0px, 0px); /* FF3.5+ */
+                    -webkit-transform: rotate(149deg) scale(1, 1) skew(0deg, 0deg) translate(0px, 0px); /*Saf3.1+, Chrome*/
+                    -o-transform: rotate(149deg) scale(1, 1) skew(0deg, 0deg) translate(0px, 0px); /* Opera 10.5 */
+                    -ms-transform: rotate(149deg) scale(1, 1) skew(0deg, 0deg) translate(0px, 0px); /* IE 9 */
+                    transform: rotate(149deg) scale(1, 1) skew(0deg, 0deg) translate(0px, 0px);
+                    z-index: -1;
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=0, Color=#c5c4c4)"; /*IE 8*/
+                    -moz-box-shadow: 0px -5px 1px #c5c4c4; /*FF 3.5+*/
+                    -webkit-box-shadow: 0px -5px 1px #c5c4c4; /*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+                    box-shadow: 0px -5px 1px #c5c4c4; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+                    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=0, Color=#c5c4c4); /*IE 5.5-7*/
+                }
+
+                .shield-right {
+                    border-top: solid 1px #585858;
+                    width: 220px;
+                    float: right;
+                    margin-right: 92px;
+                    margin-top: 0px;
+                    -moz-transform: rotate(31deg) scale(1, 1) skewX(0deg) skewY(0deg) translate(0px, 0px); /* FF3.5+ */
+                    -webkit-transform: rotate(31deg) scale(1, 1) skew(0deg, 0deg) translate(0px, 0px); /*Saf3.1+, Chrome*/
+                    -o-transform: rotate(31deg) scale(1, 1) skew(0deg, 0deg) translate(0px, 0px); /* Opera 10.5 */
+                    -ms-transform: rotate(31deg) scale(1, 1) skew(0deg, 0deg) translate(0px, 0px); /* IE 9 */
+                    transform: rotate(31deg) scale(1, 1) skew(0deg, 0deg) translate(0px, 0px);
+                    z-index: -1;
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=180, Color=#c5c4c4)"; /*IE 8*/
+                    -moz-box-shadow: 0px 3px 1px #c5c4c4; /*FF 3.5+*/
+                    -webkit-box-shadow: 0px 3px 1px #c5c4c4; /*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+                    box-shadow: 0px 3px 1px #c5c4c4; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+                    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=180, Color=#c5c4c4); /*IE 5.5-7*/
+                }
+
+                .card {
+                    width: 385px;
+                    height: 183px;
+                    margin: 30px auto;
+                    background-color: #FFF;
+                    -moz-border-radius: 5px; /*Firefox*/
+                    -webkit-border-radius: 5px; /*Safari, Chrome*/
+                    border-radius: 5px;
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color=#d2d2d2)"; /*IE 8*/
+                    -moz-box-shadow: 0px 2px 3px #d2d2d2; /*FF 3.5+*/
+                    -webkit-box-shadow: 0px 2px 3px #d2d2d2; /*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+                    box-shadow: 0px 2px 3px #d2d2d2; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+                    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color=#d2d2d2); /*IE 5.5-7*/
+                    border-bottom: solid 2px #c8c8c8;
+                    border-top: solid 1px #c8c8c8;
+                    border-right: solid 1px #c8c8c8;
+                    border-left: solid 1px #c8c8c8;
+                }
+
+                .detail {
+                    width: 365px;
+                    height: 163px;
+                    margin: 9px auto;
+                }
+
+                .detail-images {
+                    width: 88px;
+                    height: 91px;
+                    text-align: center;
+                    color: #8b8b8b;
+                }
+
+                .card h3 {
+                    color: #3b3b3b;
+                    margin-left: 100px;
+                    margin-top: -90px;
+                    font-size: 16px;
+                }
+
+                .card h4 {
+                    color: #8b8b8b;
+                    margin-left: 100px;
+                    font-size: 13px;
+                    font-style: italic;
+                }
+
+                .card p {
+                    color: #787878;
+                    margin-left: 100px;
+                    margin-top: 17px;
+                    font-weight: 400;
+                }
+
+                .content-shield {
+                    width: 365px;
+                    border-top: solid 1px #dedede;
+                    margin: 20px auto;
+                }
+
+                .card ul {
+                    margin-top: -5px;
+                }
+
+                    .card ul li {
+                        display: inline;
+                        margin-right: 6px;
+                    }
+
+                        .card ul li a {
+                            color: #FFF;
+                            display: inline-block;
+                            padding-top: 6px;
+                            padding-bottom: 6px;
+                            background-color: #DEDEDE;
+                            -moz-border-radius: 2px; /*Firefox*/
+                            -webkit-border-radius: 2px; /*Safari, Chrome*/
+                            border-radius: 2px;
+                            width: 30px;
+                            text-align: center;
+                        }
+
+                            .card ul li a:hover {
+                                background-color: #b1b1b1;
+                            }
+
+                .mail {
+                    color: #707070;
+                    background: #e9e9e9; /* Old browsers */
+                    background: -moz-linear-gradient(top, #e9e9e9 0%, #f1f1f1 50%, #e1e1e1 51%, #dbdbdb 100%); /* FF3.6+ */
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e9e9e9), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#dbdbdb)); /* Chrome,Safari4+ */
+                    background: -webkit-linear-gradient(top, #e9e9e9 0%,#f1f1f1 50%,#e1e1e1 51%,#dbdbdb 100%); /* Chrome10+,Safari5.1+ */
+                    background: -o-linear-gradient(top, #e9e9e9 0%,#f1f1f1 50%,#e1e1e1 51%,#dbdbdb 100%); /* Opera 11.10+ */
+                    background: -ms-linear-gradient(top, #e9e9e9 0%,#f1f1f1 50%,#e1e1e1 51%,#dbdbdb 100%); /* IE10+ */
+                    background: linear-gradient(to bottom, #e9e9e9 0%,#f1f1f1 50%,#e1e1e1 51%,#dbdbdb 100%); /* W3C */
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9e9e9', endColorstr='#dbdbdb',GradientType=0 ); /* IE6-9 */
+                    border: solid 1px #BFBFBF;
+                    padding: 6px 20px 6px 20px;
+                    float: right;
+                    margin-top: -31px;
+                    -moz-border-radius: 2px; /*Firefox*/
+                    -webkit-border-radius: 2px; /*Safari, Chrome*/
+                    border-radius: 2px;
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=180, Color=#ffffff)"; /*IE 8*/
+                    text-shadow: 0px 1px 0px #ffffff; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+                    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=180, Color=#ffffff); /*IE 5.5-7*/
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color=#ffffff)"; /*IE 8*/
+                    -moz-box-shadow: inset 1px 1px 0px #ffffff; /*FF 3.5+*/
+                    -webkit-box-shadow: inset 1px 1px 0px #ffffff; /*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+                    box-shadow: inset 1px 1px 0px #ffffff; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+                    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, Color=#ffffff); /*IE 5.5-7*/
+                }
+
+                    .mail:hover {
+                        background: #e9e9e9; /* Old browsers */
+                        background: -moz-linear-gradient(top, #e9e9e9 0%, #e9e9e9 50%, #e9e9e9 51%, #e9e9e9 100%); /* FF3.6+ */
+                        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e9e9e9), color-stop(50%,#e9e9e9), color-stop(51%,#e9e9e9), color-stop(100%,#e9e9e9)); /* Chrome,Safari4+ */
+                        background: -webkit-linear-gradient(top, #e9e9e9 0%,#e9e9e9 50%,#e9e9e9 51%,#e9e9e9 100%); /* Chrome10+,Safari5.1+ */
+                        background: -o-linear-gradient(top, #e9e9e9 0%,#e9e9e9 50%,#e9e9e9 51%,#e9e9e9 100%); /* Opera 11.10+ */
+                        background: -ms-linear-gradient(top, #e9e9e9 0%,#e9e9e9 50%,#e9e9e9 51%,#e9e9e9 100%); /* IE10+ */
+                        background: linear-gradient(to bottom, #e9e9e9 0%,#e9e9e9 50%,#e9e9e9 51%,#e9e9e9 100%); /* W3C */
+                        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9e9e9', endColorstr='#e9e9e9',GradientType=0 ); /* IE6-9 */
+                    }
+
+                .message {
+                    color: #707070;
+                    font-size: 20px;
+                }
+                /*-- copyright --*/
+                .copyright {
+                    width: 385px;
+                    margin: 10px auto;
+                    text-align: center;
+                    color: #787878;
+                }
+            </style>
+            foreach (var c in Model) // Print the list
+            {
+                <div class="col-md-6">
+                    <div class="points"></div>
+                    <div class="shield-left"></div>
+                    <div class="shield-right"></div>
+                    <!-- card -->
+                    <div class="card">
+                        <div class="detail">
+                            <div class="detail-images"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--gRIu19ZY--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://thepracticaldev.s3.amazonaws.com/uploads/user/profile_image/89214/f00af79e-6b89-4d25-953e-b071b8744877.png" alt="Picture"></div>
+                            <h3>@c.FirstName @c.LastName</h3>
+                            <h4>@c.UserName</h4>
+                            <p>@c.Email<br> @c.Phone</p>
+                            <div class="content-shield"></div>
+                            <ul>
+                                <li><a class="pull-left text-success" href="@Url.Action("doactive","users")/@c.UserID"><i class="icon icon-check"></i></a></li>
+                                <li><a class="pull-right text-success" href="@Url.Action("details","users")/@c.UserID"><i class="icon icon-eye"></i></a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="card mt-5">
+                <div class="card-body text-center">
+                    <div class="alert alert-fill-danger text-danger" role="alert">
+                        <i class="icon icon-exclamation-circle"></i>
+                        Sorry, Nothing Found
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+@section scripts{
+    <script src="@WebConfigurationManager.AppSettings["Theme"]js/vendor.min.js"></script>
+    <script src="@WebConfigurationManager.AppSettings["Theme"]js/elephant.min.js"></script>
+    <script src="@WebConfigurationManager.AppSettings["Theme"]js/application.min.js"></script>
+    <script src="@WebConfigurationManager.AppSettings["Theme"]js/demo.min.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-83990101-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+}
