@@ -14,6 +14,8 @@ namespace SwiftFoodie.Models
         public string Location { get; set; }
         public DateTime OrderDate { get; set; }
         public long MenuID { get; set; }
+        public long ResturantID { get; set; }
+
         public int Status
         {
             get; set;

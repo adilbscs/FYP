@@ -21,8 +21,9 @@ namespace SwiftFoodie.Controllers
 
         public ActionResult Dashboard()
         {
+            long ResId = Convert.ToInt64(Session["RestaurantID"]);
             var pendings = (from o in db.Orders
-                            where o.Status == 1
+                            where o.Status == 1 && o.ResturantID== ResId
                             join c in db.Users on o.CustomerID equals c.UserID
                             join m in db.Menu on o.MenuID equals m.MenuID orderby o.OrderID descending
                             select new

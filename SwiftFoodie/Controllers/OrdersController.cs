@@ -14,8 +14,10 @@ namespace SwiftFoodie.Controllers
         // GET: Orders
         public ActionResult pending()
         {
+            long ResId = Convert.ToInt64(Session["RestaurantID"]);
+
             var pendings = (from o in db.Orders
-                            where o.Status == 1
+                            where o.Status == 1 && o.ResturantID == ResId
                             join c in db.Users on o.CustomerID equals c.UserID
                             join m in db.Menu on o.MenuID equals m.MenuID
                             select new
@@ -43,8 +45,9 @@ namespace SwiftFoodie.Controllers
         }
         public ActionResult current()
         {
-            var current = (from o in db.Orders
-                           where o.Status == 2
+            long ResId = Convert.ToInt64(Session["RestaurantID"]);
+            var current = (from o in db.Orders 
+                           where o.Status == 2 && o.ResturantID == ResId
                            join c in db.Users on o.CustomerID equals c.UserID
                            join m in db.Menu on o.MenuID equals m.MenuID
                            select new
@@ -75,8 +78,10 @@ namespace SwiftFoodie.Controllers
         }
         public ActionResult canceled()
         {
+            long ResId = Convert.ToInt64(Session["RestaurantID"]);
+
             var canceled = (from o in db.Orders
-                            where o.Status == 3
+                            where o.Status == 3 && o.ResturantID == ResId
                             join c in db.Users on o.CustomerID equals c.UserID
                             join m in db.Menu on o.MenuID equals m.MenuID
                             select new
@@ -106,8 +111,9 @@ namespace SwiftFoodie.Controllers
         }
         public ActionResult completed()
         {
+            long ResId = Convert.ToInt64(Session["RestaurantID"]);
             var completed = (from o in db.Orders
-                             where o.Status == 4
+                             where o.Status == 4 && o.ResturantID == ResId
                              join c in db.Users on o.CustomerID equals c.UserID
                              join m in db.Menu on o.MenuID equals m.MenuID
                              select new

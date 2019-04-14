@@ -13,6 +13,7 @@ namespace SwiftFoodie.Models
         public string ItemName { get; set; }
         public string ItemCategory { get; set; }
         public long ItemPrice { get; set; }
+        public long ResturantID { get; set; }
         public bool Status { get; set; }
 
     }

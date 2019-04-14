@@ -12,18 +12,23 @@ namespace SwiftFoodie.Controllers
     {
         // GET: Menu
         DBContextDataBase db = new DBContextDataBase();
+
         public ActionResult Add()
         {
             return View();
         }
         public ActionResult List()
         {
-            var menus = db.Menu.Where(m => m.Status == true).ToList();
+            long ResId = Convert.ToInt64(Session["RestaurantID"]);
+
+            var menus = db.Menu.Where(m => m.Status == true && m.ResturantID== ResId).ToList();
             return View(menus);
         }
         public ActionResult IList()
         {
-            var menus = db.Menu.Where(m => m.Status == false).ToList();
+            long ResId = Convert.ToInt64(Session["RestaurantID"]);
+
+            var menus = db.Menu.Where(m => m.Status == false && m.ResturantID == ResId).ToList();
             return View(menus);
         }
         public ActionResult Save(Menu objMenu)
@@ -32,6 +37,9 @@ namespace SwiftFoodie.Controllers
             {
                 if (objMenu.MenuID == 0)
                 {
+                    long ResId = Convert.ToInt64(Session["RestaurantID"]);
+
+                    objMenu.ResturantID = ResId;
                     objMenu.Status = true;
                     db.Menu.Add(objMenu);
 
